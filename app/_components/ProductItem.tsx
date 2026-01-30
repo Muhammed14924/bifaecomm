@@ -8,7 +8,7 @@ const ProductItem = ({ product }: { product: any }) => {
       className="rounded-lg border-teal-400 border-2 overflow-hidden hover:cursor-pointer hover:border hover:shadow-md hover:scale-105 ease-in-out duration-500"
     >
       <Image
-        src={product?.banner?.url}
+        src={product?.banner?.[0]?.url}
         alt={product?.title}
         width={400}
         height={350}

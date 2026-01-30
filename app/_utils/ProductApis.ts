@@ -1,4 +1,10 @@
 import axiosClient from "./axiosClient";
+const getCategoryList = () =>
+  axiosClient.get("/categories?populate=*").then((res) => res.data.data);
+const getCategory = () => axiosClient.get("/categories?populate=*");
+
+const getSlider = () =>
+  axiosClient.get("/sliders?populate=*").then((res) => res.data.data);
 
 const getLatestProducts = () =>
   axiosClient.get("/products?populate=*").then((res) => res.data.data);
@@ -19,6 +25,9 @@ const ProductApis = {
   getLatestProducts,
   getProductById,
   getProductsByCategory,
+  getCategoryList,
+  getCategory,
+  getSlider,
 };
 
 export default ProductApis;

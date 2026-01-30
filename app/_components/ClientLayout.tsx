@@ -2,10 +2,10 @@
 
 import { usePathname } from "next/navigation";
 import { useState } from "react";
-import { Header } from "./Header";
 import Footer from "./Footer";
 import { Toaster } from "@/components/ui/sonner";
 import { CartContext } from "../_context/CartContext";
+import { SiteNavbar } from "./site-navbar";
 
 export default function ClientLayout({
   children,
@@ -19,7 +19,9 @@ export default function ClientLayout({
 
   return (
     <CartContext.Provider value={{ updateCart, setUpdateCart }}>
-      {showHeader && <Header />}
+      {/* {showHeader && <Header />} */}
+      {showHeader && <SiteNavbar />}
+
       <main className="pt-20">{children}</main>
       <Toaster />
       <Footer />

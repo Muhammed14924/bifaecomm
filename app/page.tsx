@@ -1,8 +1,13 @@
-import Image from "next/image";
-import { Hero } from "./_components/Hero";
+import CardFlip from "@/components/mvpblocks/card-flip";
 import ProductSection from "./_components/ProductSection";
-
-export default function Home() {
+import Slider from "./_components/Slider";
+import ProductApis from "./_utils/ProductApis";
+import CategoryList from "./_components/CategoryList";
+export default async function Home() {
+  const sliderList = await ProductApis.getSlider();
+  console.log("sliderList", sliderList);
+  const categoryList = await ProductApis.getCategoryList();
+  console.log("categoryList", categoryList);
   return (
     // <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
     //   <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
@@ -64,7 +69,10 @@ export default function Home() {
     //   </main>
     // </div>
     <div>
-      <Hero />
+      {/* <Hero /> */}
+      {/* <SiteNavbar /> */}
+      <Slider sliderList={sliderList} />
+      <CategoryList categoryList={categoryList} />
       <ProductSection />
     </div>
   );

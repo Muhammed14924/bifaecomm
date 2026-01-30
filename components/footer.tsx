@@ -1,266 +1,295 @@
-import { Logo } from '@/components/logo'
-import Link from 'next/link'
+"use client";
 
-const links = [
-    {
-        group: 'Product',
-        items: [
-            {
-                title: 'Features',
-                href: '#',
-            },
-            {
-                title: 'Solution',
-                href: '#',
-            },
-            {
-                title: 'Customers',
-                href: '#',
-            },
-            {
-                title: 'Pricing',
-                href: '#',
-            },
-            {
-                title: 'Help',
-                href: '#',
-            },
-            {
-                title: 'About',
-                href: '#',
-            },
-        ],
-    },
-    {
-        group: 'Solution',
-        items: [
-            {
-                title: 'Startup',
-                href: '#',
-            },
-            {
-                title: 'Freelancers',
-                href: '#',
-            },
-            {
-                title: 'Organizations',
-                href: '#',
-            },
-            {
-                title: 'Students',
-                href: '#',
-            },
-            {
-                title: 'Collaboration',
-                href: '#',
-            },
-            {
-                title: 'Design',
-                href: '#',
-            },
-            {
-                title: 'Management',
-                href: '#',
-            },
-        ],
-    },
-    {
-        group: 'Company',
-        items: [
-            {
-                title: 'About',
-                href: '#',
-            },
-            {
-                title: 'Careers',
-                href: '#',
-            },
-            {
-                title: 'Blog',
-                href: '#',
-            },
-            {
-                title: 'Press',
-                href: '#',
-            },
-            {
-                title: 'Contact',
-                href: '#',
-            },
-            {
-                title: 'Help',
-                href: '#',
-            },
-        ],
-    },
-    {
-        group: 'Legal',
-        items: [
-            {
-                title: 'Licence',
-                href: '#',
-            },
-            {
-                title: 'Privacy',
-                href: '#',
-            },
-            {
-                title: 'Cookies',
-                href: '#',
-            },
-            {
-                title: 'Security',
-                href: '#',
-            },
-        ],
-    },
-]
+import { BifaLogo } from "@/app/_components/bifa-logo";
+import { cn } from "@/lib/utils";
+import {
+  Facebook,
+  Instagram,
+  Twitter,
+  Linkedin,
+  Mail,
+  Phone,
+  MapPin,
+  ChevronRight,
+  ArrowUp,
+  Send,
+  Truck,
+  ShieldCheck,
+  RotateCcw,
+  Headphones,
+} from "lucide-react";
+import Link from "next/link";
+import { motion } from "motion/react";
+import { useEffect, useState } from "react";
+
+const footerLinks = [
+  {
+    title: "تسوق معنا",
+    links: [
+      { label: "الإلكترونيات", href: "/products?category=electronics" },
+      { label: "أزياء رجالية", href: "/products?category=men" },
+      { label: "أزياء نسائية", href: "/products?category=women" },
+      { label: "المنزل والمطبخ", href: "/products?category=home" },
+      { label: "العروض الأسبوعية", href: "/offers" },
+    ],
+  },
+  {
+    title: "خدمة العملاء",
+    links: [
+      { label: "مركز المساعدة", href: "/help" },
+      { label: "تتبع الطلب", href: "/track-order" },
+      { label: "طرق الشحن", href: "/shipping" },
+      { label: "سياسة الاستبدال", href: "/returns" },
+      { label: "اتصل بنا", href: "/contact" },
+    ],
+  },
+  {
+    title: "عن بيفا",
+    links: [
+      { label: "من نحن", href: "/about" },
+      { label: "سياسة الخصوصية", href: "/privacy" },
+      { label: "الشروط والأحكام", href: "/terms" },
+      { label: "المدونة", href: "/blog" },
+      { label: "الوظائف", href: "/careers" },
+    ],
+  },
+];
+
+const features = [
+  {
+    icon: Truck,
+    title: "توصيل سريع",
+    desc: "لكل أنحاء المملكة",
+  },
+  {
+    icon: ShieldCheck,
+    title: "دفع آمن",
+    desc: "تشفير كامل للبيانات",
+  },
+  {
+    icon: RotateCcw,
+    title: "استبدال مرن",
+    desc: "خلال 14 يوم عمل",
+  },
+  {
+    icon: Headphones,
+    title: "دعم فني",
+    desc: "متواجدون لخدمتكم",
+  },
+];
 
 export default function FooterSection() {
-    return (
-        <footer className="border-b bg-white pt-20 dark:bg-transparent">
-            <div className="mx-auto max-w-5xl px-6">
-                <div className="grid gap-12 md:grid-cols-5">
-                    <div className="md:col-span-2">
-                        <Link
-                            href="/"
-                            aria-label="go home"
-                            className="block size-fit">
-                            <Logo />
-                        </Link>
-                    </div>
+  const [isVisible, setIsVisible] = useState(false);
 
-                    <div className="grid grid-cols-2 gap-6 sm:grid-cols-4 md:col-span-3">
-                        {links.map((link, index) => (
-                            <div
-                                key={index}
-                                className="space-y-4 text-sm">
-                                <span className="block font-medium">{link.group}</span>
-                                {link.items.map((item, index) => (
-                                    <Link
-                                        key={index}
-                                        href={item.href}
-                                        className="text-muted-foreground hover:text-primary block duration-150">
-                                        <span>{item.title}</span>
-                                    </Link>
-                                ))}
-                            </div>
-                        ))}
-                    </div>
-                </div>
-                <div className="mt-12 flex flex-wrap items-end justify-between gap-6 border-t py-6">
-                    <span className="text-muted-foreground order-last block text-center text-sm md:order-first">© {new Date().getFullYear()} Tailark, All rights reserved</span>
-                    <div className="order-first flex flex-wrap justify-center gap-6 text-sm md:order-last">
-                        <Link
-                            href="#"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="X/Twitter"
-                            className="text-muted-foreground hover:text-primary block">
-                            <svg
-                                className="size-6"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="1em"
-                                height="1em"
-                                viewBox="0 0 24 24">
-                                <path
-                                    fill="currentColor"
-                                    d="M10.488 14.651L15.25 21h7l-7.858-10.478L20.93 3h-2.65l-5.117 5.886L8.75 3h-7l7.51 10.015L2.32 21h2.65zM16.25 19L5.75 5h2l10.5 14z"></path>
-                            </svg>
-                        </Link>
-                        <Link
-                            href="#"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="LinkedIn"
-                            className="text-muted-foreground hover:text-primary block">
-                            <svg
-                                className="size-6"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="1em"
-                                height="1em"
-                                viewBox="0 0 24 24">
-                                <path
-                                    fill="currentColor"
-                                    d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2zm-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.32 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93zM6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37z"></path>
-                            </svg>
-                        </Link>
-                        <Link
-                            href="#"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="Facebook"
-                            className="text-muted-foreground hover:text-primary block">
-                            <svg
-                                className="size-6"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="1em"
-                                height="1em"
-                                viewBox="0 0 24 24">
-                                <path
-                                    fill="currentColor"
-                                    d="M22 12c0-5.52-4.48-10-10-10S2 6.48 2 12c0 4.84 3.44 8.87 8 9.8V15H8v-3h2V9.5C10 7.57 11.57 6 13.5 6H16v3h-2c-.55 0-1 .45-1 1v2h3v3h-3v6.95c5.05-.5 9-4.76 9-9.95"></path>
-                            </svg>
-                        </Link>
-                        <Link
-                            href="#"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="Threads"
-                            className="text-muted-foreground hover:text-primary block">
-                            <svg
-                                className="size-6"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="1em"
-                                height="1em"
-                                viewBox="0 0 24 24">
-                                <path
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="1.5"
-                                    d="M19.25 8.505c-1.577-5.867-7-5.5-7-5.5s-7.5-.5-7.5 8.995s7.5 8.996 7.5 8.996s4.458.296 6.5-3.918c.667-1.858.5-5.573-6-5.573c0 0-3 0-3 2.5c0 .976 1 2 2.5 2s3.171-1.027 3.5-3c1-6-4.5-6.5-6-4"
-                                    color="currentColor"></path>
-                            </svg>
-                        </Link>
-                        <Link
-                            href="#"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="Instagram"
-                            className="text-muted-foreground hover:text-primary block">
-                            <svg
-                                className="size-6"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="1em"
-                                height="1em"
-                                viewBox="0 0 24 24">
-                                <path
-                                    fill="currentColor"
-                                    d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4zm9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8A1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5a5 5 0 0 1-5 5a5 5 0 0 1-5-5a5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3a3 3 0 0 0 3 3a3 3 0 0 0 3-3a3 3 0 0 0-3-3"></path>
-                            </svg>
-                        </Link>
-                        <Link
-                            href="#"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="TikTok"
-                            className="text-muted-foreground hover:text-primary block">
-                            <svg
-                                className="size-6"
-                                xmlns="http://www.w3.org/2000/svg"
-                                width="1em"
-                                height="1em"
-                                viewBox="0 0 24 24">
-                                <path
-                                    fill="currentColor"
-                                    d="M16.6 5.82s.51.5 0 0A4.28 4.28 0 0 1 15.54 3h-3.09v12.4a2.59 2.59 0 0 1-2.59 2.5c-1.42 0-2.6-1.16-2.6-2.6c0-1.72 1.66-3.01 3.37-2.48V9.66c-3.45-.46-6.47 2.22-6.47 5.64c0 3.33 2.76 5.7 5.69 5.7c3.14 0 5.69-2.55 5.69-5.7V9.01a7.35 7.35 0 0 0 4.3 1.38V7.3s-1.88.09-3.24-1.48"></path>
-                            </svg>
-                        </Link>
-                    </div>
-                </div>
+  useEffect(() => {
+    const toggleVisibility = () => {
+      if (window.pageYOffset > 300) {
+        setIsVisible(true);
+      } else {
+        setIsVisible(false);
+      }
+    };
+    window.addEventListener("scroll", toggleVisibility);
+    return () => window.removeEventListener("scroll", toggleVisibility);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  return (
+    <footer className="relative bg-[#f6f1ea] pt-16 dark:bg-[#0a0a0a] overflow-hidden">
+      {/* Top decorative gradient line */}
+      <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r from-transparent via-[#8a1818] to-transparent opacity-50" />
+
+      {/* Newsletter & Features Part */}
+      <div className="mx-auto max-w-7xl px-6 pb-12">
+        <div className="grid grid-cols-1 gap-12 lg:grid-cols-2 items-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="space-y-6"
+          >
+            <h3 className="text-3xl font-bold text-gray-900 dark:text-white leading-tight">
+              اشترك في نشرتنا الإخبارية <br />
+              <span className="text-[#8a1818]">واحصل على خصم 10%</span>
+            </h3>
+            <p className="text-gray-600 dark:text-gray-400 max-w-md">
+              كن أول من يعرف عن أحدث العروض والمنتجات الحصرية والخصومات
+              الموسمية.
+            </p>
+            <div className="flex max-w-md items-center gap-3">
+              <input
+                type="email"
+                placeholder="بريدك الإلكتروني"
+                className="w-full rounded-xl border-gray-200 bg-gray-50 px-5 py-3 text-sm focus:border-[#8a1818] focus:outline-none focus:ring-1 focus:ring-[#8a1818] dark:border-zinc-800 dark:bg-zinc-900/50"
+              />
+              <button className="flex items-center gap-2 rounded-xl bg-[#8a1818] px-6 py-3 text-sm font-bold text-white transition hover:bg-[#6d1313] active:scale-95 shadow-lg shadow-[#8a1818]/20">
+                اشترك
+                <Send className="size-4" />
+              </button>
             </div>
-        </footer>
-    )
+          </motion.div>
+
+          <div className="grid grid-cols-2 gap-6">
+            {features.map((feature, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, scale: 0.9 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: i * 0.1 }}
+                viewport={{ once: true }}
+                className="group flex items-center gap-4 p-4 rounded-2xl border border-gray-100 bg-gray-50/50 transition duration-300 hover:bg-white hover:shadow-xl hover:shadow-gray-200/50 dark:border-zinc-800 dark:bg-zinc-900/30 dark:hover:bg-zinc-900/50 dark:hover:shadow-none"
+              >
+                <div className="flex size-12 shrink-0 items-center justify-center rounded-xl bg-[#8a1818]/10 text-[#8a1818] transition group-hover:bg-[#8a1818] group-hover:text-white">
+                  <feature.icon className="size-6" />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold text-gray-900 dark:text-white">
+                    {feature.title}
+                  </h4>
+                  <p className="text-xs text-gray-500 dark:text-gray-400">
+                    {feature.desc}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        <div className="h-px w-full bg-linear-to-r from-transparent via-gray-200 dark:via-zinc-800 to-transparent" />
+      </div>
+
+      {/* Main Footer Links */}
+      <div className="mx-auto max-w-7xl px-6 py-12">
+        <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-5">
+          {/* Brand Section */}
+          <div className="lg:col-span-2 space-y-6">
+            <BifaLogo />
+            <p className="text-gray-600 dark:text-gray-400 max-w-sm leading-relaxed">
+              متجر بيفا الإلكتروني، وجهتك الأولى للتسوق العصري. نحن نؤمن بأن
+              الجودة والخدمة الممتازة هي سر نجاحنا. نسعى دائماً لتوفير أفضل
+              المنتجات بأسعار تنافسية.
+            </p>
+            <div className="flex items-center gap-6">
+              {[
+                { icon: Facebook, href: "#", color: "hover:text-blue-600" },
+                { icon: Instagram, href: "#", color: "hover:text-pink-500" },
+                { icon: Twitter, href: "#", color: "hover:text-sky-500" },
+                { icon: Linkedin, href: "#", color: "hover:text-blue-700" },
+              ].map((social, i) => (
+                <motion.a
+                  key={i}
+                  whileHover={{ y: -5, scale: 1.1 }}
+                  href={social.href}
+                  className={cn(
+                    "text-gray-400 transition-colors",
+                    social.color,
+                  )}
+                >
+                  <social.icon className="size-6" />
+                </motion.a>
+              ))}
+            </div>
+          </div>
+
+          {/* Navigation Columns */}
+          {footerLinks.map((column, i) => (
+            <div key={i} className="space-y-6">
+              <h4 className="text-base font-bold text-gray-900 dark:text-white relative inline-block">
+                {column.title}
+                <span className="absolute -bottom-1 left-0 h-1 w-6 bg-[#8a1818] rounded-full" />
+              </h4>
+              <ul className="space-y-4">
+                {column.links.map((link, j) => (
+                  <li key={j}>
+                    <Link
+                      href={link.href}
+                      className="group flex items-center gap-2 text-sm text-gray-600 transition hover:text-[#8a1818] dark:text-gray-400 dark:hover:text-[#8a1818]"
+                    >
+                      <ChevronRight className="size-3 text-[#8a1818] transition group-hover:translate-x-1 rtl:rotate-180" />
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Contact Strip */}
+      <div className="bg-[#8a1818] text-white py-8">
+        <div className="mx-auto max-w-7xl px-6">
+          <div className="flex flex-wrap justify-between items-center gap-6">
+            <div className="flex items-center gap-4">
+              <div className="size-12 rounded-full bg-white/20 flex items-center justify-center">
+                <Phone className="size-6" />
+              </div>
+              <div>
+                <p className="text-xs opacity-75">تحتاج مساعدة؟ اتصل بنا</p>
+                <p className="text-lg font-bold font-sans">966+ 55 555 5555</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="size-12 rounded-full bg-white/20 flex items-center justify-center">
+                <Mail className="size-6" />
+              </div>
+              <div>
+                <p className="text-xs opacity-75">أرسل لنا استفسارك</p>
+                <p className="text-lg font-bold font-sans">support@bifa.com</p>
+              </div>
+            </div>
+            <div className="flex items-center gap-4">
+              <div className="size-12 rounded-full bg-white/20 flex items-center justify-center">
+                <MapPin className="size-6" />
+              </div>
+              <div>
+                <p className="text-xs opacity-75">موقعنا</p>
+                <p className="text-lg font-bold">
+                  الرياض، المملكة العربية السعودية
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Bottom Copyright */}
+      <div className="mx-auto max-w-7xl px-6 py-8">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-6 border-t border-gray-100 dark:border-zinc-800 pt-8">
+          <p className="text-sm text-gray-500 dark:text-gray-400">
+            © {new Date().getFullYear()} بيفا. جميع الحقوق محفوظة. تم التطوير
+            بصناعة محلية 🇸🇦
+          </p>
+          <div className="flex items-center gap-4 opacity-50 grayscale hover:grayscale-0 transition duration-500">
+            {/* Mock payment icons */}
+            <div className="h-4 w-10 bg-gray-400 rounded-sm" title="Visa" />
+            <div
+              className="h-4 w-10 bg-gray-400 rounded-sm"
+              title="Mastercard"
+            />
+            <div className="h-4 w-10 bg-gray-400 rounded-sm" title="STC Pay" />
+            <div className="h-4 w-10 bg-gray-400 rounded-sm" title="Mada" />
+          </div>
+        </div>
+      </div>
+
+      {/* Back to top button */}
+      {isVisible && (
+        <motion.button
+          initial={{ opacity: 0, scale: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          onClick={scrollToTop}
+          className="fixed bottom-8 right-8 z-99 flex size-12 items-center justify-center rounded-full bg-[#8a1818] text-white shadow-2xl transition hover:bg-[#6d1313] hover:scale-110 active:scale-95 shadow-[#8a1818]/30"
+        >
+          <ArrowUp className="size-6" />
+        </motion.button>
+      )}
+    </footer>
+  );
 }

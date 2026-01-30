@@ -19,7 +19,7 @@
     },
     "banner": {
       "type": "media",
-      "multiple": false,
+      "multiple": true,
       "allowedTypes": [
         "images",
         "files",
@@ -46,13 +46,10 @@
     "whatsincluded": {
       "type": "blocks"
     },
-    "category": {
-      "type": "enumeration",
-      "enum": [
-        "TECH",
-        "SECURITY",
-        "MARKETING"
-      ]
+    "categories": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category.category"
     }
   }
 }

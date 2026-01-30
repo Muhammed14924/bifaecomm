@@ -9,7 +9,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
-import { Menu, MoveRight, ShoppingCart, X } from "lucide-react";
+import { CircleUserIcon, Menu, MoveRight, ShoppingCart, X } from "lucide-react";
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -46,50 +46,6 @@ export const Header = () => {
       href: "/contact",
       description: "",
     },
-    // {
-    //   title: "Product",
-    //   description: "Managing a small business today is already tough.",
-    //   items: [
-    //     {
-    //       title: "Reports",
-    //       href: "/reports",
-    //     },
-    //     {
-    //       title: "Statistics",
-    //       href: "/statistics",
-    //     },
-    //     {
-    //       title: "Dashboards",
-    //       href: "/dashboards",
-    //     },
-    //     {
-    //       title: "Explore",
-    //       href: "/explore",
-    //     },
-    //   ],
-    // },
-    // {
-    //   title: "Company",
-    //   description: "Managing a small business today is already tough.",
-    //   items: [
-    //     {
-    //       title: "About us",
-    //       href: "/about",
-    //     },
-    //     {
-    //       title: "Fundraising",
-    //       href: "/fundraising",
-    //     },
-    //     {
-    //       title: "Investors",
-    //       href: "/investors",
-    //     },
-    //     {
-    //       title: "Contact us",
-    //       href: "/contact",
-    //     },
-    //   ],
-    // },
   ];
 
   const [isOpen, setOpen] = useState(false);
@@ -175,6 +131,7 @@ export const Header = () => {
               <Link href="/sign-up">
                 <Button>Register</Button>
               </Link>
+              <CircleUserIcon />
             </div>
           ) : (
             <div className="flex items-center gap-5">
